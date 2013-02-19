@@ -3,38 +3,91 @@
   <head>
     <meta charset="utf-8"/>
     <title>Let's learn Ember.js</title>
-    <script src="jquery.min.js"></script>
-    <script src="handlebars.js"></script>
-    <script src="ember.js"></script>
-    <script>
-      window.App = Ember.Application.create();
-      
-      var globalCounter = 0;
-      var Bookmark = Ember.Object.extend({
-        to_link: function() {
-          return "<a href='" + this.get("url") + "'>"
-               + this.get("name")
-               + "</a>";
-        }
-      , formatted: function() {
-          return this.get("name") + " - " + this.get("url");
-        }
-      , link: function() {
-          return this.to_link();
-        }.property("name", "url")
-      , updateCounter: Ember.observer(function() {
-          globalCounter += 1;
-          console.log("Global counter has increased to " + globalCounter);
-        }, "name")
-      });
-      var bookmark = Bookmark.create({ name: "Tuts+ Premium", url: "http://tutsplus.com"});
-    </script>
-    <script>
-    </script>
+    <link rel="stylesheet" href="css/foundation.min.css" />
+    <script src="js/vendor/jquery.min.js"></script>
+    <script src="js/vendor/handlebars.js"></script>
+    <script src="js/vendor/ember.js"></script>
+    <script src="js/vendor/ember.data.js"></script>
+    <script src="js/vendor/modernizr.foundation.js"></script>
+    <script src="js/vendor/foundation.min.js"></script>
+    <script src="js/vendor/foundation.app.js"></script>
+    <script src="js/app/app.js"></script>
+    <script src="js/app/router.js"></script>
+    <script src="js/app/routes/bookmarks.js"></script>
+    <script src="js/app/controllers/bookmarks_controller.js"></script>
+    <script src="js/app/controllers/bookmark_controller.js"></script>
+    <script src="js/app/models/bookmark.js"></script>
   </head>
   <body>
+
+    <script type="text/x-handlebars" data-template-name="bookmark">
+      <h1>{{description}}</h1> 
+
+      <iframe {{bindAttr src="url"}} ></iframe>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="application">
+
+      <div class="container">
+        <nav class="top-bar">
+          <ul>
+            <li class="name">
+              <h1>{{#linkTo "index"}}Home{{/linkTo}}</h1>
+            </li>
+            <li>{{#linkTo "about"}}About{{/linkTo}}
+              <ul>
+                <li>{{#linkTo "about.team"}}Team{{/linkTo}}</li>
+              </ul>
+            </li>
+            <li>{{#linkTo "contact"}}Contact{{/linkTo}}</li>
+            <li>{{#linkTo "bookmarks"}}Bookmarks{{/linkTo}}</li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          {{outlet}}
+        </div>
+      </div>
+
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="bookmarks">
+      <h1>Listing bookmarks</h1>
+
+      <table class="twelve">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>URL</th>
+          </tr>
+        </thead>
+        {{#each bookmark in controller}}
+          <tr>
+            <td>{{#linkTo "bookmark" bookmark}}{{bookmark.name}}{{/linkTo}}</td>
+            <td>{{bookmark.url}}</td>
+          </tr>
+        {{/each}}
+      </table>
+    </script>
+
     <script type="text/x-handlebars" data-template-name="index">
       <h1>Welcome to Ember.js!</h1>
     </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About page</h1>
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="contact">
+      <h1>Please contact us!</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about/team">
+      <h2>Here's our team!</h2>
+    </script>
+
   </body>
 </html>
