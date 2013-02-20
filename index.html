@@ -113,7 +113,7 @@
 
     <script type="text/x-handlebars" data-template-name="_if">
       <p>
-        <button class="button" {{action "toggle"}}>Toggle booleanValue</button>
+        <button class="button" {{action "toggle"}} {{bindAttr class="booleanValue:success:alert"}}>Toggle booleanValue</button>
 
         {{#if booleanValue}}
         You're seeing this because the <code>booleanValue</code> is <strong>true</strong>.
@@ -127,7 +127,7 @@
       <ol>
         {{#each person in list}}
           {{#with person}}
-          <li>{{name}}</li>
+            <li>{{name}}</li>
           {{/with}}
         {{else}}
           <li>There is no one in the list.</li>
