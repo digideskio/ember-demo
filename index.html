@@ -125,8 +125,10 @@
 
     <script type="text/x-handlebars" data-template-name="_loop">
       <ol>
-        {{#each list}}
+        {{#each person in list}}
+          {{#with person}}
           <li>{{name}}</li>
+          {{/with}}
         {{else}}
           <li>There is no one in the list.</li>
         {{/each}}
