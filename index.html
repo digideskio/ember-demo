@@ -21,6 +21,7 @@
     <script src="js/app/models/bookmark.js"></script>
     <script src="js/app/views/alert.js"></script>
     <script src="js/app/views/flash.js"></script>
+    <script src="js/app/controllers/demo-template.js"></script>
   </head>
 
   <body>
@@ -46,6 +47,7 @@
             </li>
             <li>{{#linkTo "contact"}}Contact{{/linkTo}}</li>
             <li>{{#linkTo "bookmarks"}}Bookmarks{{/linkTo}}</li>
+            <li>{{#linkTo "demotemplate"}}Template demonstration{{/linkTo}}</li>
           </ul>
         </nav>
       </div>
@@ -103,5 +105,16 @@
       <h2>Here's our team!</h2>
     </script>
 
+    <script type="text/x-handlebars" data-template-name="demotemplate">
+      <h2>Template demonstration</h2>
+
+      {{#if booleanValue}}
+        You're seeing this because the booleanValue is true.
+      {{else}}
+        Oops, it seems booleanValue is false or null.
+      {{/if}}
+
+      <button {{action "toggle"}}>Toggle booleanValue</button>
+    </script>
   </body>
 </html>
