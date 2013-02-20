@@ -107,14 +107,30 @@
 
     <script type="text/x-handlebars" data-template-name="demotemplate">
       <h2>Template demonstration</h2>
+      {{partial "if" }}
+      {{partial "loop"}}
+    </script>
 
-      {{#if booleanValue}}
-        You're seeing this because the booleanValue is true.
-      {{else}}
-        Oops, it seems booleanValue is false or null.
-      {{/if}}
+    <script type="text/x-handlebars" data-template-name="_if">
+      <p>
+        <button class="button" {{action "toggle"}}>Toggle booleanValue</button>
 
-      <button {{action "toggle"}}>Toggle booleanValue</button>
+        {{#if booleanValue}}
+        You're seeing this because the <code>booleanValue</code> is <strong>true</strong>.
+        {{else}}
+        Oops, it seems <code>booleanValue</code> is <strong>false or null</strong>.
+        {{/if}}
+      </p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_loop">
+      <ol>
+        {{#each list}}
+          <li>{{name}}</li>
+        {{else}}
+          <li>There is no one in the list.</li>
+        {{/each}}
+      </ol>
     </script>
   </body>
 </html>
