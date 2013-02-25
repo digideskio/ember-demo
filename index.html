@@ -17,7 +17,9 @@
     <script src="js/app/controllers/bookmarks_controller.js"></script>
     <script src="js/app/controllers/bookmark_controller.js"></script>
     <script src="js/app/models/bookmark.js"></script>
+    <script src="js/app/views/alert.js"></script>
   </head>
+
   <body>
 
     <script type="text/x-handlebars" data-template-name="bookmark">
@@ -56,6 +58,10 @@
     <script type="text/x-handlebars" data-template-name="bookmarks">
       <h1>Listing bookmarks</h1>
 
+      <p>
+        <button class="button" {{action "pop"}}>Pop an alert</button>
+      </p>
+
       <table class="twelve">
         <thead>
           <tr>
@@ -70,6 +76,10 @@
           </tr>
         {{/each}}
       </table>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_alert">
+      {{view.message}}
     </script>
 
     <script type="text/x-handlebars" data-template-name="index">
