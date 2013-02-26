@@ -17,8 +17,10 @@
     <script src="js/app/routes/bookmarks.js"></script>
     <script src="js/app/controllers/bookmarks_controller.js"></script>
     <script src="js/app/controllers/bookmark_controller.js"></script>
+    <script src="js/app/controllers/flash.js"></script>
     <script src="js/app/models/bookmark.js"></script>
     <script src="js/app/views/alert.js"></script>
+    <script src="js/app/views/flash.js"></script>
   </head>
 
   <body>
@@ -49,6 +51,7 @@
       </div>
 
       <div class="container">
+        {{view App.flash}}
         <div class="row">
           {{outlet}}
         </div>
